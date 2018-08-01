@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use yii\data\ActiveDataProvider;
+use yii\data\SqlDataProvider;
 use common\models\RolesList;
 use common\models\RolesForm;
 use common\models\M002Menu;
@@ -66,21 +67,28 @@ class RolesController extends Controller
     public function actionIndex()
     {
         $this->layout = 'main';
-        $roleslist = RolesList::find();
+        $roleslist = RolesList::find()->all();
  
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => $roleslist,
+        $dataProvider = new ActiveDataProvider([
+            'query' => $roleslist,
+            'pagination' => [
+                'pageSize' => 10
+            ]
+        ]);
+        // $dataProvider = new SqlDataProvider([
+        //     'sql' => 'SELECT * FROM roles_S()',
         //     'pagination' => [
-        //         'pageSize' => 10
-        //     ]
+        //         'pageSize' => 2
+        //     ],
+        //     'sort' => ['attributes' => ['namaroles','status'],
+        // //'options' => ['style' => ' color:blue'],
+        //               ]
         // ]);
         // $query = Teams::find();
-        $dataRoles = RolesList::find()->orderBy('rolesid')->all();
+        // $dataRoles = RolesList::find()->orderBy('rolesid')->all();
 
-        return $this->render('dataRoles', ['dataRoles'=>$dataRoles]);
-        // return $this->render('dataRoles',[
-        //     'dataProvider' => $dataProvider
-        // ]);
+         return $this->render('dataRoles', ['dataRoles'=>$roleslist]);
+        //return $this->render('dataRoles',['dataProvider' => $dataProvider]);
     }
 
     /**

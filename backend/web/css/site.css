@@ -45,15 +45,25 @@ a.asc:after, a.desc:after {
     font-style: normal;
     font-weight: normal;
     line-height: 1;
+    color: blue;
     padding-left: 5px;
 }
 
 a.asc:after {
     content: /*"\e113"*/ "\e151";
+    color: blue;
 }
 
 a.desc:after {
     content: /*"\e114"*/ "\e152";
+}
+
+a.asc:before {
+    color: blue;
+}
+
+a.desc:before {
+    color: blue;
 }
 
 .sort-numerical a.asc:after {
@@ -74,6 +84,11 @@ a.desc:after {
 
 .grid-view td {
     white-space: nowrap;
+}
+.grid-view th {
+    /*white-space: nowrap;*/
+    color: blue;
+    text-align: center;
 }
 
 .grid-view .filters input,

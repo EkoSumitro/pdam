@@ -39,7 +39,8 @@ if (Yii::$app->controller->action->id === 'login') {
 
         <?= $this->render(
             'content.php',
-            ['content' => $content, 'directoryAsset' => $directoryAsset]
+            // ['content' => $content, 'directoryAsset' => $directoryAsset]
+['content' => $content]
         ) ?>
 
 <!-- 
@@ -47,20 +48,6 @@ if (Yii::$app->controller->action->id === 'login') {
     </div>
 
     <?php $this->endBody() ?>
-   <?= $this->registerJs("$('#example1').DataTable()", View::POS_READY) ?> 
-    <!-- <script>
-  $(function () {
-    $('#example1').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-    
-  });
-    </script> -->
     </body>
     </html>
     <?php $this->endPage() ?>

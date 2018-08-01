@@ -1,5 +1,8 @@
 <?php
 use yii\grid\GridView;
+use yii\grid\DataColumn;
+use yii\grid\Column;
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 $this->title = 'PDAM - Tirta Asasta | Data Roles';
@@ -26,7 +29,8 @@ $this->title = 'PDAM - Tirta Asasta | Data Roles';
     </div>
     <div class="box-body">
      <div class="col-md-12">
-        <table id="example1" name="example1" class="table table-striped">
+<!--  -->
+         <table id="example1" name="example1" class="table table-striped">
             <thead>
               <tr>
                 <th></th>
@@ -68,8 +72,44 @@ $this->title = 'PDAM - Tirta Asasta | Data Roles';
 
             </tbody>
           </table>
+          <br/>
+          <br/>
     </div>
     </div>
    </div>
 </div>
 </section>
+<script src="adminlte/js/plugins/jquery/jquery.min.js"></script>
+ 
+  <script type="text/javascript">
+var user;
+$(document).ready(function() {
+
+    user = $('#example1').DataTable({ 
+
+        "oLanguage": {
+        "sProcessing": ""
+        },
+        "processing": true, 
+        "serverSide": false, 
+        "order": [], 
+        "columnDefs": [
+        { 
+            "targets": [ 0 ],
+            "orderable": true,
+            "width": "5%",
+            "targets": 0,
+        },
+        // { 
+        //     "targets": [ 0 ],
+        //     "orderable": false,
+        //     "width": "5%",
+        //     //"targets": 5,
+        // },
+        ],
+
+    });
+
+});
+</script>
+    </script>

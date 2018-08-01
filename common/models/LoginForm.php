@@ -16,6 +16,14 @@ class LoginForm extends Model
     private $_user;
 
 
+    
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'NIP atau username',
+            'password' => 'Password',
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -23,14 +31,24 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+              ['username', 'required','message' => 'NIP/usernsme tidak boleh kosong'],
+             [['password'], 'required','message' => 'Password tidak boleh kosong'],
             // rememberMe must be a boolean value
-            ['rememberMe', 'boolean'],
+            //['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
         ];
     }
-
+ 
+ public function errorMassage()
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if (!$user || !$user->validatePassword($this->password)) {
+                $this->addError($attribute, 'NIP/username atau password Anda salah.');
+            }
+        }
+    }
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -43,7 +61,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'NIP/username atau password Anda salah.');
             }
         }
     }

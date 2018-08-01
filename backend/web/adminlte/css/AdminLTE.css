@@ -182,7 +182,14 @@ img {
   background-color: #eaeaec !important;
 }
 .bg-black {
-  background-color: #222222 !important;
+  background-color: #222222 !important;*/
+/*background-color: #ffffff !important;*/
+/*background-image: url("img/BG.jpg");*/
+}
+.bg-blacklogin {
+  /*background-color: #222222 !important;*/
+/*background-color: #ffffff !important;*/
+background-image: url("img/BG.jpg");
 }
 .bg-red {
   background-color: #f56954 !important;
@@ -2394,9 +2401,15 @@ Component: timeline
     Page: register and login
 */
 .form-box {
-  width: 360px;
+  width: 25%;
+  height: 100%;
   margin: 90px auto 0 auto;
 }
+.form-box{
+  width: 25%;
+  height: 100%;
+}
+
 .form-box .header {
   -webkit-border-top-left-radius: 4px;
   -webkit-border-top-right-radius: 4px;
@@ -2421,8 +2434,10 @@ Component: timeline
 .form-box .body,
 .form-box .footer {
   padding: 10px 20px;
-  background: #fff;
-  color: #444;
+  /*background: #fff;*/
+  /*color: #444;*/
+  color: #000000;
+  background: rgba(225, 225, 225, 0.4);
 }
 .form-box .body > .form-group,
 .form-box .footer > .form-group {
@@ -3534,4 +3549,24 @@ fieldset[disabled] .btn-vk.active {
 .btn-vk .badge {
   color: #587ea3;
   background-color: #ffffff;
+}
+
+.btn.btn-login {
+  background-color: #00c0ef;
+  /*border-color: #00acd6;*/
+  outline-width: 0;
+/*border: 1px solid #000;*/
+border-radius: 50px;
+-moz-border-radius: 50px;
+}
+.btn.btn-login:hover,
+.btn.btn-login:active,
+.btn.btn-login.hover {
+  background-color: #00acd6;
+}
+
+div.transbox {
+    background-color: #ffffff;
+    opacity: 0.3;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
 }
