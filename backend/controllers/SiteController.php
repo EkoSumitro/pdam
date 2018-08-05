@@ -3,9 +3,11 @@ namespace backend\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Request;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\User;
 use yii\data\ActiveDataProvider;
 use common\models\RolesList;
 
@@ -78,7 +80,18 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $ip = Yii::$app->request->userIP;
+            //$ip = Yii::app()->request->userHostAddress;
+            $browser = Yii::$app->request->userAgent;
+            // $browserAll = Browser::detect();
+            // $browser = $browserAll['version'].' version '.$browserAll['version'];
+             $model_pegawai = User::findByUsername($model->username);
+             $nid_pegawai = $model_pegawai->id_pegawai;
+            $sdeskripsi = "login berhasil";
+             $result_log_login = Yii::$app->db->createCommand("select * from l101_log_login_i(:nid_pegawai, :sbrowser, :sdeskripsi)")->bindValue(':nid_pegawai', $nid_pegawai)->bindValue(':sbrowser',  $browser)->bindValue(':sdeskripsi', $sdeskripsi)->execute();
+             $result_log_aktifitas = Yii::$app->db->createCommand("select * from l102_log_aktifitas_i(:nid_pegawai, :sdeskripsi)")->bindValue(':nid_pegawai', $nid_pegawai)->bindValue(':sdeskripsi', $sdeskripsi)->execute();
             return $this->goBack();
+
         } else {
             $model->password = '';
 
@@ -96,7 +109,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
+// $result = Yii::$app->db->createCommand("select * from loglogin_i(:userid, :ipaddress, :sbrowser, :sketerangan)")->bindValue(':userid', $model->username)->bindValue(':ipaddress', $ip)->bindValue(':sbrowser',  $browser)->bindValue(':sketerangan', $keterangan)->execute();
         return $this->goHome();
     }
 

@@ -6,12 +6,12 @@ use yii\helpers\Html;
 /* @var $content string */
 
 //dmstr\web\AdminLteAsset::register($this);
-backend\assets\AppAsset::register($this);
+backend\assets\AdminLTEAsset::register($this);
 $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@bower') . '/admin-lte';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>" class="bg-blacklogin">
+<html lang="<?= Yii::$app->language ?>" class="">
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@bower') . '/admin-l
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="bg-blacklogin">
+<body class="hold-transition login-page">
 
 <?php $this->beginBody() ?>
 

@@ -2,6 +2,10 @@
 use yii\helpers\Html;
 use yii\web\View;
 
+use app\widgets\Alert;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
 /* @var $this \yii\web\View */
 /* @var $content string */
 if (Yii::$app->controller->action->id === 'login') {
@@ -11,7 +15,7 @@ if (Yii::$app->controller->action->id === 'login') {
     );
 } else {
     //dmstr\web\AdminLteAsset::register($this);
-    backend\assets\AppAsset::register($this);
+    backend\assets\AdminLTEAsset::register($this);
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@bower') . '/admin-lte';
     //$defaultUrl = $this->web;
     ?>
@@ -25,8 +29,10 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="skin-black">
+    <body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
+    
+    <div class="wrapper">
  <?= $this->render(
         'header.php',
         ['directoryAsset' => $directoryAsset]
@@ -43,8 +49,8 @@ if (Yii::$app->controller->action->id === 'login') {
 ['content' => $content]
         ) ?>
 
-<!-- 
-    </div> -->
+
+    </div>
     </div>
 
     <?php $this->endBody() ?>

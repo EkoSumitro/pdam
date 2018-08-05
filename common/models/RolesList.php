@@ -18,7 +18,7 @@ class RolesList extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'roles';
+        return 'm011_role';
     }
 
     /**
@@ -27,9 +27,16 @@ class RolesList extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rolesname'], 'string'],
-            [['isactive'], 'default', 'value' => null],
-            [['isactive'], 'integer'],
+            [['kode_role'], 'string'],
+            [['nama_role'], 'string'],
+            [['no_urut'], 'integer'],
+            [['deskripsi'], 'string'],
+            [['status_aktif'], 'default', 'value' => null],
+            [['status_aktif'], 'integer'],
+            // [['id_pegawai_buat'], 'integer'],
+            // [['tanggal_buat'], 'datetime'],
+            // [['id_pegawai_ubah'], 'integer'],
+            // [['tanggal_ubah'], 'datetime'],
         ];
     }
 
@@ -39,9 +46,12 @@ class RolesList extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'rolesid' => 'Rolesid',
-            'rolesname' => 'Nama Roles',
-            'isactive' => 'Is Active',
+            'id_Role' => 'Id Role',
+            'kode_role' => 'Kode Role',
+            'nama_role' => 'Nama Role',
+            'no_urut' => 'No. Urut',
+            'deskripsi' => 'Deskripsi',
+            'status_aktif' => 'Status Aktif',
         ];
     }
 }

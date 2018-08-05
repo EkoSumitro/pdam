@@ -10,14 +10,20 @@ use yii\base\Model;
  */
 class RolesForm extends Model
 {
-	public $rolesname;
-	public $isactive;
+	public $kode_role;
+	public $nama_role;
+    public $no_urut;
+    public $deskripsi;
+    public $status_aktif;
 	
 	public function attributeLabels()
     {
         return [
-            'rolesname' => 'Nama Roles',
-            'isactive' => 'Is Active',
+            'kode_role' => 'Kode Role',
+            'nama_role' => 'Nama Role',
+            'no_urut' => 'Nomor Urut',
+            'deskripsi' => 'Deskripsi',
+            'status_aktif' => 'Status Aktif',
         ];
     }
 
@@ -28,11 +34,16 @@ class RolesForm extends Model
            // [['rolesname','isactive'], 'required'],
             // rememberMe must be a boolean value
             //['rolesname', 'string','max'=>'50'],
-            ['rolesname', 'required','message' => 'Nama Roles tidak boleh kosong'],
+            ['kode_role', 'required','message' => 'Kode Roles tidak boleh kosong'],
+            ['rolesname', 'string','max'=>'10'],
+            ['nama_role', 'required','message' => 'Nama Roles tidak boleh kosong'],
             ['rolesname', 'string','max'=>'50'],
+            ['no_urut', 'required','message' => 'No. Urut tidak boleh kosong'],
+            ['deskripsi', 'required','message' => 'Deskripsi tidak boleh kosong'],
+            ['rolesname', 'string','max'=>'100'],
             // ['country', 'required','message' => 'Negara asal tim gak boleh kosong'],
             // ['country', 'string','max'=>'25'],
-            ['isactive', 'boolean'],
+            ['status_aktif', 'boolean'],
         ];
 	}
 }

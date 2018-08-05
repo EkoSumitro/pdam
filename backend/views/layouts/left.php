@@ -4,8 +4,8 @@ use common\models\M002Menu;
 use yii\helpers\Url;
 
 ?>
-<aside class="left-side sidebar-offcanvas">
-
+<!-- <aside class="left-side sidebar-offcanvas"> -->
+<aside class="main-sidebar">
     <section class="sidebar">
 
         <?php if (!Yii::$app->user->isGuest) : ?>
@@ -31,6 +31,7 @@ use yii\helpers\Url;
                             </span>
             </div>
         </form>
+        <ul class="sidebar-menu"  data-widget="tree">
 
         <?=
         Nav::widget(
@@ -51,7 +52,6 @@ use yii\helpers\Url;
 
         <!-- You can delete next ul.sidebar-menu. It's just demo. -->
 
-        <ul class="sidebar-menu">
             <!-- 
             <li>
                 <a href="#" class="navbar-link">

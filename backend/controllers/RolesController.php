@@ -12,6 +12,7 @@ use common\models\RolesList;
 use common\models\RolesForm;
 use common\models\M002Menu;
 use app\controller\SiteController;
+use himiklab\jqgrid\actions\JqGridActiveAction;
 
 /**
  * Site controller
@@ -57,6 +58,14 @@ class RolesController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
         ];
+
+    return [
+        'jqgrid' => [
+            'class' => JqGridActiveAction::className(),
+            'model' => RolesList::className(),
+            'columns' => ['rolesname', 'isactive']
+        ],
+    ];
     }
 
     /**
@@ -109,27 +118,30 @@ class RolesController extends Controller
         {
             $request = Yii::$app->request;
             $roles = new RolesForm();
-            $model->rolesname = $request->post('RolesForm')['rolesname'];
-            $model->isactive = $request->post('RolesForm')['isactive'];
+            $model->kode_role = $request->post('RolesForm')['kode_role'];
+            $model->nama_role = $request->post('RolesForm')['nama_role'];
+            $model->deskripsi = $request->post('RolesForm')['deskripsi'];
+            $model->status_aktif = $request->post('RolesForm')['status_aktif'];
 
             //$model->save();
             $result = Yii::$app->db->createCommand("select * from roles_i(:srolesname, :bisactive)")->bindValue(':srolesname', $model->rolesname)->bindValue(':bisactive', $model->isactive)->execute();
             //tambah insert log aktifitas jika berhasil
             //tambah insert log error jika error
             
-        $this->layout = 'main';
-        $roleslist = RolesList::find();
+        // $this->layout = 'main';
+        // $roleslist = RolesList::find();
  
-        $dataProvider = new ActiveDataProvider([
-            'query' => $roleslist,
-            'pagination' => [
-                'pageSize' => 10
-            ]
-        ]);
+        // $dataProvider = new ActiveDataProvider([
+        //     'query' => $roleslist,
+        //     'pagination' => [
+        //         'pageSize' => 10
+        //     ]
+        // ]);
  
-        return $this->render('dataRoles',[
-            'dataProvider' => $dataProvider
-        ]);
+        // return $this->render('dataRoles',[
+        //     'dataProvider' => $dataProvider
+        // ]);
+            $this->roleslist();
         }
         else
         {
@@ -142,35 +154,35 @@ class RolesController extends Controller
      *
      * @return string
      */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
+    // public function actionLogin()
+    // {
+    //     if (!Yii::$app->user->isGuest) {
+    //         return $this->goHome();
+    //     }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            $model->password = '';
+    //     $model = new LoginForm();
+    //     if ($model->load(Yii::$app->request->post()) && $model->login()) {
+    //         return $this->goBack();
+    //     } else {
+    //         $model->password = '';
 
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
+    //         return $this->render('login', [
+    //             'model' => $model,
+    //         ]);
+    //     }
+    // }
 
     /**
      * Logout action.
      *
      * @return string
      */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
+    // public function actionLogout()
+    // {
+    //     Yii::$app->user->logout();
 
-        return $this->goHome();
-    }
+    //     return $this->goHome();
+    // }
 
     /**
      * Roles List action.
@@ -193,4 +205,16 @@ class RolesController extends Controller
             'dataProvider' => $dataProvider
         ]);
     }
+ // public function actionsJqgrid()
+ //    {
+
+ //    return [
+ //        'jqgrid' => [
+ //            'class' => JqGridActiveAction::RolesList(),
+ //            'model' => Page::RolesList(),
+ //            'columns' => ['rolesname', 'isactive']
+ //        ],
+ //    ];
+ //    }
+ 
 }

@@ -3,7 +3,8 @@
 <?php
 use yii\helpers\Html;
 //use yii\helpers\Url;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use kartik\form\ActiveForm;
 
 $this->title = 'PDAM - Tirta Asasta | Input Roles';
 ?>
@@ -19,24 +20,40 @@ $this->title = 'PDAM - Tirta Asasta | Input Roles';
     </ol>
 </section>
 
-<div class="box box-primary">
+<div class="box box-warning">
 	<div class="row">
 		<div class="col-sm-3">
-		        <div class="box-body">
-    				<?php $form = ActiveForm::begin(['id' => 'roles-form']); ?>
+		        <div class="box-header with-border">
+    				<?php $form = ActiveForm::begin([
+    					'id' => 'roles-form' ,
+				        'type' => ActiveForm::TYPE_HORIZONTAL, 
+				      	'formConfig' => ['deviceSize' => ActiveForm::SIZE_LARGE]]); ?>
 		            <div class="form-group">
-					<?= $form->field($model,'rolesname')->textInput() ?>
+					<?= $form->field($model, 'kode_role', ['labelSpan' => 5, 'deviceSize' => ActiveForm::SIZE_LARGE,
+               'inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'width' =>'1000px']])->textInput(['style'=>'width:150px'])?>
+					</div>
+		            <div class="form-group">
+					<?= $form->field($model, 'nama_role', ['labelSpan' => 5])->textInput(['style'=>'width:300px'])?>
+					</div>
+		            <div class="form-group">
+					<?= $form->field($model, 'no_urut', ['labelSpan' => 5])->textInput(['style'=>'width:150px'])?>
+					</div>
+		            <div class="form-group">
+					<?= $form->field($model, 'deskripsi', ['labelSpan' => 5])->textarea(['rows' => '3','style'=>'width:500px'])?>
 					</div>
 	                <div class="checkbox">
-					<?= $form->field($model,'isactive')->checkbox() ?>
+					<?= $form->field($model,'status_aktif', ['labelSpan' => 5])->dropDownList(
+            		['1' => 'Ya', '0' => 'Tidak']); ?>
 	  				</div>
+	  			</div>
+		        <div class="box-header with-border">
 					<div class="form-group">
 	        		<?= Html::submitButton('Simpan', ['class' => 'btn btn-success', 'name' => 'roles-button']) ?>
 					</div>
+				</div>
 				<?php
 					ActiveForm::end();
 				?>
-	  			</div>
 		</div>
 	</div>
 </div>
